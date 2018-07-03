@@ -93,4 +93,7 @@ public class TimelineActivity extends AppCompatActivity {
             }
         });
     }
+
+    // getRelativeTimeAgo("Mon Apr 01 21:16:23 +0000 2014");
+
 }
