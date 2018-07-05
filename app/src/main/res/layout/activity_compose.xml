@@ -20,7 +20,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/et_simple"
-        android:text="Compose"
+        android:onClick="onClick"
+        android:text="Tweet"
         tools:layout_editor_absoluteX="147dp"
         tools:layout_editor_absoluteY="146dp" />
 
