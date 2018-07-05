@@ -3,8 +3,11 @@ package com.codepath.apps.restclienttemplate;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.codepath.apps.restclienttemplate.models.Tweet;
@@ -22,6 +25,7 @@ public class ComposeActivity extends AppCompatActivity {
     JsonHttpResponseHandler handler;
     String strValue;
     EditText simpleEditText;
+    private TextView characterCount;
 
 
 
@@ -33,6 +37,24 @@ public class ComposeActivity extends AppCompatActivity {
         simpleEditText = (EditText) findViewById(R.id.et_simple);
 
         client = TwitterApp.getRestClient(this);
+
+        characterCount = (TextView) findViewById(R.id.characterCount);
+
+
+        final TextWatcher txwatcher = new TextWatcher() {
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                characterCount.setText("Remaining characters : " + String.valueOf(140 - s.length()));
+            }
+
+            public void afterTextChanged(Editable s) {
+            }
+        };
+
+        simpleEditText.addTextChangedListener(txwatcher);
     }
 
 
