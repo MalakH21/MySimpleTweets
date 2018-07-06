@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,6 +17,7 @@ import java.util.List;
 public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> {
 
     private List<Tweet> mTweets;
+    Button reply;
     Context context;
     // pass in Tweets array in the constructor
     public TweetAdapter(List<Tweet> tweets){
@@ -58,11 +60,12 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
     }
 
     //create ViewHolder class
-     public static class ViewHolder extends RecyclerView.ViewHolder{
+     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
          public ImageView ivProfileImage;
          public TextView tvUsername;
          public TextView tvBody;
         public TextView tvDate;
+        //public Button reply;
 
         public ViewHolder(View itemView){
             super(itemView);
@@ -73,6 +76,12 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
             tvUsername = (TextView) itemView.findViewById(R.id.tvUserName);
             tvBody = (TextView) itemView.findViewById(R.id.tvBody);
             tvDate = (TextView) itemView.findViewById(R.id.tvDate);
+            //reply = (Button) itemView.findViewById(R.id.replyButton);
+
+        }
+
+        @Override
+        public void onClick(View v) {
 
         }
     }

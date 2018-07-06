@@ -3,11 +3,9 @@ package com.codepath.apps.restclienttemplate;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.codepath.apps.restclienttemplate.models.Tweet;
@@ -19,51 +17,22 @@ import org.parceler.Parcels;
 
 import cz.msebera.android.httpclient.Header;
 
-public class ComposeActivity extends AppCompatActivity {
-    Tweet tweet;
+public class ReplyButton extends AppCompatActivity {
+    Button reply;
     TwitterClient client;
     JsonHttpResponseHandler handler;
     String strValue;
     EditText simpleEditText;
-    private TextView characterCount;
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_compose);
+        setContentView(R.layout.activity_reply_button);
 
-        simpleEditText = (EditText) findViewById(R.id.et_simple);
+        simpleEditText = (EditText) findViewById(R.id.reply_message);
 
         client = TwitterApp.getRestClient(this);
-
-        characterCount = (TextView) findViewById(R.id.characterCount);
-
-
-        final TextWatcher txwatcher = new TextWatcher() {
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-                characterCount.setText("Remaining characters : " + String.valueOf(140 - s.length()));
-            }
-
-            public void afterTextChanged(Editable s) {
-            }
-        };
-
-        simpleEditText.addTextChangedListener(txwatcher);
-
-        //MenuItem miActionProgressItem;
-
-
-
-
     }
-
 
     public void onClick(View view) {
 
@@ -71,9 +40,9 @@ public class ComposeActivity extends AppCompatActivity {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 try {
-                    Tweet tweet = Tweet.fromJSON(response);
+                    Tweet reply = Tweet.fromJSON(response);
                     Intent data = new Intent();
-                    data.putExtra("tweet", Parcels.wrap(tweet));
+                    data.putExtra("reply", Parcels.wrap(reply));
                     setResult(RESULT_OK, data);
                     finish();
 
@@ -89,5 +58,10 @@ public class ComposeActivity extends AppCompatActivity {
         });
     }
 
-
 }
+
+
+
+
+
+

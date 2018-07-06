@@ -33,4 +33,5 @@
             android:layout_alignParentTop="true" />
 
     </android.support.v4.widget.SwipeRefreshLayout>
+
 </android.support.constraint.ConstraintLayout>

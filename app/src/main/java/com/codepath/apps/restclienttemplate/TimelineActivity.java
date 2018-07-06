@@ -32,6 +32,7 @@ public class TimelineActivity extends AppCompatActivity {
     ArrayList<Tweet> tweets;
     RecyclerView rvTweets;
 
+
     public static final int COMPOSE_REQ = 1;
 
 
@@ -142,6 +143,15 @@ public class TimelineActivity extends AppCompatActivity {
 
     }
 
+    public void onReply(MenuItem menuItem) {
+        // get tweeter info
+        Intent i = new Intent(TimelineActivity.this, ComposeActivity.class);
+        startActivityForResult(i, COMPOSE_REQ);
+
+    }
+
+
+
     private void populateTimeLine() {
         client.getHomeTimeline(new JsonHttpResponseHandler() {
             @Override
@@ -192,6 +202,32 @@ public class TimelineActivity extends AppCompatActivity {
 
         });
     }
+
+    /*
+
+    MenuItem miActionProgressItem;
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        // Store instance of the menu item containing progress
+        miActionProgressItem = menu.findItem(R.id.miActionProgress);
+        // Extract the action-view from the menu item
+        ProgressBar v =  (ProgressBar) MenuItemCompat.getActionView(miActionProgressItem);
+        // Return to finish
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+    public void showProgressBar() {
+        // Show progress item
+        miActionProgressItem.setVisible(true);
+    }
+
+    public void hideProgressBar() {
+        // Hide progress item
+        miActionProgressItem.setVisible(false);
+    }
+
+    */
 
 }
 

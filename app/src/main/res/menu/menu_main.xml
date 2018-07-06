@@ -14,5 +14,14 @@
         android:title="Profile"
         app:showAsAction="ifRoom|withText">
     </item>
+    <item
+        android:id="@+id/miActionProgress"
+        android:title="Loading..."
+        android:visible="false"
+        android:orderInCategory="100"
+        android:actionLayout="@layout/action_view_progress"
+        app:showAsAction="always" />
+
+
 
 </menu>
