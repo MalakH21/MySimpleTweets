@@ -26,6 +26,7 @@ public class TimelineActivity extends AppCompatActivity {
     private SwipeRefreshLayout swipeContainer;
 
 
+    Tweet tweet;
 
     TwitterClient client;
     TweetAdapter tweetAdapter;
@@ -70,6 +71,21 @@ public class TimelineActivity extends AppCompatActivity {
                 fetchTimelineAsync(0);
             }
         });
+
+        tweet = (Tweet)
+
+                Parcels.unwrap(getIntent().getParcelableExtra(Tweet.class.getSimpleName()));
+
+
+//        Button button = (Button) findViewById(R.id.replyButton);
+//        button.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//                // Perform action on click
+//                Intent intent = new Intent(getApplicationContext(), ReplyButton.class);
+//                intent.putExtra(Tweet.class.getSimpleName(), Parcels.wrap(tweet));
+//                startActivityForResult(intent, 10);
+//            }
+//        });
 
         // Configure the refreshing colors
         swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
@@ -119,6 +135,22 @@ public class TimelineActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        /*if(requestCode == 10) {
+
+            Intent intent = new Intent(this, TimelineActivity.class);
+            intent.putExtra(Tweet.class.getSimpleName(), Parcels.wrap(tweet));
+            startActivityForResult(intent, 20);
+
+        } else {
+            Tweet tweet = Parcels.unwrap(data.getParcelableExtra("tweet"));
+            // check request code and result code first
+
+            tweets.add(0, tweet);
+            tweetAdapter.notifyItemInserted(0);
+            rvTweets.scrollToPosition(0);
+
+            // Use data parameter
+        }*/
         Tweet tweet = Parcels.unwrap(data.getParcelableExtra("tweet"));
         // check request code and result code first
 
@@ -126,7 +158,8 @@ public class TimelineActivity extends AppCompatActivity {
         tweetAdapter.notifyItemInserted(0);
         rvTweets.scrollToPosition(0);
 
-        // Use data parameter
+
+
 
     }
 
